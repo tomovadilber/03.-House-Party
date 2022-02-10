@@ -1,0 +1,87 @@
+using System;
+using System.Text;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace firstProblemMidleExam
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            int numOfParticipants = int.Parse(Console.ReadLine());
+            List<string> guests = new List<string>();
+
+            
+
+            for (int i = 0; i < numOfParticipants; i++)
+            {
+
+                string[] names = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToArray();
+                if (i == 0)
+                {
+
+                    if (names[2] == "not")
+                    {
+
+                        Console.WriteLine($"{names[0]} is not in the list!");
+
+                    }
+                    else
+                    {
+                        guests.Add(names[0]);
+                    }
+                }
+                else
+                {
+                    
+                    if (names[2] == "not")
+                    {
+                        int tracker = 0;
+                        for (int j = 0; j < guests.Count; j++)
+                        {
+                            if (guests[j] == names[0])
+                            {
+                                guests.RemoveAt(j);
+                                tracker = 1;
+                            }
+                        }
+                        if (tracker == 0)
+                        {
+                            Console.WriteLine($"{names[0]} is not in the list!");
+                        }
+                    }
+                    else
+                    {
+                        int tracker = 0;
+                        
+                        for (int c = 0; c < guests.Count; c++)
+                        {
+                            if (guests[c] == names[0])
+                            {
+                                Console.WriteLine($"{names[0]} is already in the list!");
+                                tracker = 1;
+                            }
+                        }
+                        if (tracker == 0)
+                        {
+                            guests.Add(names[0]);
+                        }
+                    }
+
+                }
+
+
+
+
+            }
+
+            for (int i = 0; i < guests.Count; i++)
+            {
+                Console.WriteLine(guests[i]);
+            }
+        }
+
+    }
+}
